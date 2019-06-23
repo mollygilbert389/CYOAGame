@@ -4,35 +4,47 @@ var hasknife = false
 var hasHorse = false
 var hasMoney = false
 
-function playGame() {inquirer.prompt ([
+playGame()
+
+///initial game play function and name entry
+function playGame() {
+    inquirer.prompt ([
         {
             type: "input",
             message: "You got a name partner?",
             name: "name"
-        },
-        {
+        }
+
+    ])
+    .then(function() {
+        firstChoice()
+    })
+}
+
+
+//first choice function
+function firstChoice() {
+    inquirer.prompt([
+    {
             type: "list",
             message: "We got a real problem in the Wild West maybe you should choose a weapon...",
             choices: ["KNIFE", "YOUR WIT"],
             name: "weapon"
-        },
-
+    }
     ])
-
+    
     .then(function(anwsers) {
         if (anwsers.weapon === "YOUR WIT") {
-            console.log("-------------------")
-            console.log("Gun shots can be heard outside. People are screaming. I chose the wrong weapon Run!")
-            console.log("-------------------")
+            console.log("-------------------\n")
+            console.log("Gun shots can be heard outside. People are screaming. I chose the wrong weapon Run!\n")
+            console.log("-------------------\n")
             wit1 ()
         }
         if (anwsers.weapon === "KNIFE"){
-            fight ()
+            fight()
         }
     })
 }
-
-playGame ()
 
     function wit1() {
         inquirer.prompt([
@@ -46,17 +58,17 @@ playGame ()
         
         .then(function(anwsers){
             if (anwsers.wit1 === "That barrel looks safe") {
-                console.log("-------------------")
-                console.log("The barrel was NOT safe. A stray bullet shot you through the head. Dead")
-                console.log("-------------------")
+                console.log("-------------------\n")
+                console.log("The barrel was NOT safe. A stray bullet shot you through the head. Dead\n")
+                console.log("-------------------\n")
                 playAgain ()
             }
             else {
-                console.log("-------------------")
-                console.log("The saloon it is.")
-                console.log("-------------------")
-                console.log("The saloon isn't any quieter, but they don't seem to notice the commotion outside. Must happen often. You take a look around.")
-                console.log("-------------------")
+                console.log("-------------------\n")
+                console.log("The saloon it is.\n")
+                console.log("-------------------\n")
+                console.log("The saloon isn't any quieter, but they don't seem to notice the commotion outside. Must happen often. You take a look around.\n")
+                console.log("-------------------\n")
                 saloon ()
             }
         })
@@ -73,23 +85,23 @@ playGame ()
             ])
         .then(function(anwsers){
             if (anwsers.saloon === "I wanna play poker.") {
-                console.log("-------------------")
-                console.log("These look like some fun peeps")
-                console.log("-------------------")
+                console.log("-------------------\n")
+                console.log("These look like some fun peeps.\n")
+                console.log("-------------------\n")
                 poker()
             }
             else {
-                console.log("-------------------")
-                console.log("Howdy Ma'am")
-                console.log("-------------------")
+                console.log("-------------------\n")
+                console.log("Howdy Ma'am.\n")
+                console.log("-------------------\n")
                 lady()
             }
         })
     }
 
     function search (){
-        console.log("Got a gun. Let's head to the saloon though.")
-        console.log("-------------------")
+        console.log("Got a gun. Let's head to the saloon though.\n")
+        console.log("-------------------\n")
         hasGun = true;
         saloon();
     }
@@ -105,24 +117,24 @@ playGame ()
             ])
         .then(function(anwsers){
             if (anwsers.poker === "But you're broke" && hasGun === true) {
-                console.log("-------------------")
-                console.log("You've joined the game")
-                console.log("-------------------")
+                console.log("-------------------\n")
+                console.log("You've joined the game.\n")
+                console.log("-------------------\n")
                 pokerGame()
             }
             else {
-                console.log("-------------------")
-                console.log("Sam drag this man outta here. You're thrown out of the bar")
-                console.log("-------------------")
+                console.log("-------------------\n")
+                console.log("Sam drag this man outta here. You're thrown out of the bar.\n")
+                console.log("-------------------\n")
                 street ()
             }
         })
     }
 
     function lady () {
-        console.log("-------------------")
-        console.log("She don't look like no hooker")
-        console.log("-------------------")
+        console.log("-------------------\n")
+        console.log("She don't look like no hooker.\n")
+        console.log("-------------------\n")
         inquirer.prompt([
             {
                 type: "list",
@@ -133,15 +145,15 @@ playGame ()
             ])
         .then(function(anwsers){
             if (anwsers.lady === "Where are you from?"){
-                console.log("-------------------")
-                console.log("None of your damn business! You just got slapped")
-                console.log("-------------------")
+                console.log("-------------------\n")
+                console.log("None of your damn business! You just got slapped.\n")
+                console.log("-------------------\n")
                 lady ()
             }
             else {
-                console.log("-------------------")
-                console.log("I am looking for my father. Have you seen him?")
-                console.log("-------------------")
+                console.log("-------------------\n")
+                console.log("I am looking for my father. Have you seen him?\n")
+                console.log("-------------------\n")
                 father()
             }
 
@@ -153,25 +165,26 @@ function playAgain(){
         {
             type: "list",
             message: "Play Again?",
-            choices: ["Yes!", "No"],
+            choices: ["Yes!", "No."],
             name: "playAgain"
         }
         ])
     .then(function(anwsers){
         if (anwsers.playAgain === "Yes!"){
-            playGame ()
+            firstChoice()
         }
         else {
-            console.log("-------------------")
-            console.log("Goodbye")
-            console.log("-------------------")
+            console.log("-------------------\n")
+            console.log("Goodbye.\n")
+            console.log("-------------------\n")
         }
     })
 }
 
 function street (){
-    console.log("Back to the danger!")
-    console.log("-------------------")
+    console.log("-------------------\n")
+    console.log("Back to the danger!\n")
+    console.log("-------------------\n")
     inquirer.prompt([
         {
             type: "list",
@@ -192,13 +205,13 @@ function street (){
 }
 
 function horse (){
-    console.log("Let's get out of here! Taking the high road")
-    console.log("-------------------")
+    console.log("Let's get out of here! Taking the high road.\n")
+    console.log("-------------------\n")
 }
 
 
 function father (){
-    console.log("-------------------")
+    console.log("-------------------\n")
     inquirer.prompt([
         {
             type: "list",
@@ -210,8 +223,12 @@ function father (){
 }
 
 function fight (){
-    console.log("Knife is sharp! But do I really want to fight these guys?")
-    playGame ()
+    console.log("-------------------\n")
+    console.log("Knife is sharp! But do I really want to fight these guys?\n")
+    console.log("-------------------\n")
+    console.log("Game has not gotten this far yet.\n")
+    console.log("-------------------\n")
+    playAgain()
 }
 
 function pokerGame() {
@@ -234,7 +251,7 @@ function pokerGame() {
 }
 
 function bluff (){
-   console.log("You bluff. They don't trust you, but they fold. You won the pot!") 
+   console.log("You bluff. They don't trust you, but they fold. You won the pot!\n") 
    hasMoney = true
    inquirer.prompt([
     {
@@ -248,5 +265,9 @@ function bluff (){
 }
 
 function fold(){
-    console.log("Bad hand. You fold. You get you up to leave but the man to your right grabs your arm wondering where your ante is. You flash your gun. He's not impressed. He eyes the leader of the table who pulls his gun on you")
+    console.log("Bad hand. You fold. You get you up to leave but the man to your right grabs your arm wondering where your ante is. You flash your gun. He's not impressed. He eyes the leader of the table who pulls his gun on you.\n")
+}
+
+function replay() {
+
 }
