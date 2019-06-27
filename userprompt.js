@@ -22,7 +22,7 @@ function playGame() {
 }
 
 
-//first choice function
+//first choice function -- where the replay lists back to. 
 function firstChoice() {
     inquirer.prompt([
     {
@@ -64,11 +64,6 @@ function firstChoice() {
                 playAgain ()
             }
             else {
-                console.log("-------------------\n")
-                console.log("The saloon it is.\n")
-                console.log("-------------------\n")
-                console.log("The saloon isn't any quieter, but they don't seem to notice the commotion outside. Must happen often. You take a look around.\n")
-                console.log("-------------------\n")
                 saloon ()
             }
         })
@@ -78,7 +73,7 @@ function firstChoice() {
         inquirer.prompt([
             {
                 type: "list",
-                message: "What now?",
+                message: "The saloon it is.\n The saloon isn't any quieter, but they don't seem to notice the commotion outside. Must happen often. You take a look around.\n What now?\n",
                 choices: ["I wanna play poker.", "She looks interesting."],
                 name: "saloon"
             }
@@ -118,7 +113,14 @@ function firstChoice() {
         .then(function(anwsers){
             if (anwsers.poker === "But you're broke" && hasGun === true) {
                 console.log("-------------------\n")
-                console.log("You've joined the game.\n")
+                console.log("They eye your gun. You've joined the game.\n")
+                console.log("-------------------\n")
+                pokerGame()
+            }
+
+            if (anwsers.poker === "Mind if you pay my ante?" && hasGun === true){
+                console.log("-------------------\n")
+                console.log("They eye your gun. You've joined the game.\n")
                 console.log("-------------------\n")
                 pokerGame()
             }
@@ -132,13 +134,10 @@ function firstChoice() {
     }
 
     function lady () {
-        console.log("-------------------\n")
-        console.log("She don't look like no hooker.\n")
-        console.log("-------------------\n")
         inquirer.prompt([
             {
                 type: "list",
-                message: "What do you want?",
+                message: 'She asks: "What do you want?"',
                 choices: ["Where are you from?", "What are you doing here?"],
                 name: "lady"
             }
@@ -215,11 +214,27 @@ function father (){
     inquirer.prompt([
         {
             type: "list",
-            message: "Can't say I have.",
-            choices: ["", ""],
+            message: "He came through here looking for gold.",
+            choices: ["Gold? Where?", "Lady, ain't no gold around here."],
             name: "ace"
         }
         ])
+        .then(function(anwsers){
+            if(anwsers.ace === "Gold? Tell me more about this gold!") {
+                console.log("-------------------\n")
+                console.log("Well, I'm not sure where. (She doesn't look like she trusts you.)\n")
+                console.log("-------------------\n")
+                father()
+
+            }
+            else {
+                console.log("-------------------\n")
+                console.log("Yes, there is! I can show you!\n")
+                console.log("-------------------\n")
+                showMeGold()
+            }
+             
+        })
 }
 
 function fight (){
