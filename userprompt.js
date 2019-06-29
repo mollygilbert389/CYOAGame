@@ -28,19 +28,19 @@ function firstChoice() {
     {
             type: "list",
             message: "We got a real problem in the Wild West maybe you should choose a weapon...",
-            choices: ["KNIFE", "YOUR WIT"],
+            choices: ["Knife", "Your wit"],
             name: "weapon"
     }
     ])
     
     .then(function(anwsers) {
-        if (anwsers.weapon === "YOUR WIT") {
+        if (anwsers.weapon === "Your wit") {
             console.log("-------------------\n")
             console.log("Gun shots can be heard outside. People are screaming. I chose the wrong weapon Run!\n")
             console.log("-------------------\n")
             wit1 ()
         }
-        if (anwsers.weapon === "KNIFE"){
+        if (anwsers.weapon === "Knife"){
             fight()
         }
     })
